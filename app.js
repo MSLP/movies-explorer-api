@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/explorer', {
+mongoose.connect('mongodb://localhost:27017/moviesdb', { // прописать ссылку в конфиге
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,

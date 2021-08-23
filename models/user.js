@@ -1,26 +1,29 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
+const {
+  uniqueEmail, emailValidation, requireMessage, minLength, maxLength,
+} = require('constants');
 
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    require: true,
-    unique: true,
+    require: [true, requireMessage],
+    unique: [true, uniqueEmail],
     validate: {
       validator: (v) => isEmail(v),
-      message: "Поле 'email' не соответствует требуемому формату почты.",
+      message: emailValidation,
     },
   },
   password: {
     type: String,
-    require: true,
+    require: [true, requireMessage],
     select: false,
   },
   name: {
     type: String,
-    require: true,
-    minlength: 2,
-    maxlength: 30,
+    require: [true, requireMessage],
+    minlength: [2, minLength],
+    maxlength: [30, maxLength],
   },
 });
 
