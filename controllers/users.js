@@ -29,22 +29,18 @@ const updateUser = (req, res, next) => {
 
 const addUser = (req, res, next) => {
   const data = { ...req.body };
-  User.findOne({ email: data.email })
-    .then((user) => {
-      if (user) next(new ConflictError('Пользователь с таким email уже существует'));
-
-      bcrypt.hash(data.password, 10)
-        .then((hash) => User.create({ name: data.name, email: data.email, password: hash }))
-        .then((newUser) => {
-          const userDoc = newUser._doc;
-          delete userDoc.password;
-          res.status(200).send(newUser);
-        })
-        .catch((err) => {
-          if (err.name === 'ValidationError') next(new BadRequestError('Переданы некорректные данные'));
-          next(err);
-        });
-    }).catch(next);
+  return bcrypt.hash(data.password, 10)
+    .then((hash) => User.create({ name: data.name, email: data.email, password: hash }))
+    .then((newUser) => {
+      const userDoc = newUser._doc;
+      delete userDoc.password;
+      res.status(200).send(newUser);
+    })
+    .catch((err) => {
+      if (err.code === 11000) next(new ConflictError('Такой email уже используется'));
+      if (err.name === 'ValidationError') next(new BadRequestError('Переданы некорректные данные'));
+      next(err);
+    });
 };
 
 const login = (req, res, next) => {

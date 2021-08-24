@@ -5,7 +5,21 @@ const {
   emailValidation, requireMessage, minLength, maxLength, urlValidation, idValidation,
 } = require('../models/constants');
 
-const validateUserBody = celebrate({
+const validateUserBodyUpdate = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email()
+      .message(emailValidation)
+      .messages({ 'any.required': requireMessage }),
+    name: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.min': minLength,
+        'string.max': maxLength,
+        'any.required': requireMessage,
+      }),
+  }),
+});
+
+const validateUserBodyCreate = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email()
       .message(emailValidation)
@@ -72,4 +86,6 @@ const validateMovieBody = celebrate({
   }),
 });
 
-module.exports = { validateUserBody, validateAuthentication, validateMovieBody };
+module.exports = {
+  validateUserBodyUpdate, validateUserBodyCreate, validateAuthentication, validateMovieBody,
+};
