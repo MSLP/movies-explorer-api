@@ -24,6 +24,7 @@ const updateUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, data, { new: true, runValidators: true })
     .then((user) => res.status(200).send(user))
     .catch((err) => {
+      if (err.code === 11000) next(new ConflictError(respEmailExists));
       if (err.name === 'CastError') next(new BadRequestError());
       next(err);
     });
