@@ -5,6 +5,6 @@ const requireMessage = 'Обязательное поле незаполненн
 const minLength = 'Поле должно быть не короче 2 символов.';
 const maxLength = 'Поле должно быть не длиннее 30 символов';
 
-export {
+module.exports = {
   uniqueEmail, emailValidation, urlValidation, requireMessage, minLength, maxLength,
 };

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { isURL } = require('validator');
-const { requireMessage, urlValidation } = require('constants');
+const { requireMessage, urlValidation } = require('./constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
