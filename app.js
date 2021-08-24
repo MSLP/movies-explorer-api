@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { errors } = require('celebrate');
 const { MONGO_DB, PORT } = require('./config');
 const router = require('./routes/index');
+const error = require('./middlewares/error');
 
 const app = express();
 
@@ -15,5 +17,7 @@ mongoose.connect(MONGO_DB, {
 });
 
 app.use(router);
+app.use(errors());
+app.use(error);
 
 app.listen(PORT);
