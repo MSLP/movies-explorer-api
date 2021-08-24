@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { MONGO_DB } = require('./config');
+const { MONGO_DB, PORT } = require('./config');
 
 const app = express();
 
@@ -12,3 +12,5 @@ mongoose.connect(MONGO_DB, {
   useCreateIndex: true,
   useFindAndModify: false,
 });
+
+app.listen(PORT);
