@@ -7,7 +7,7 @@ const extractBearerToken = (header) => header.replace('Bearer ', '');
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) next(new UnauthorizedError('Пользователь не зарегистрирован'));
+  if (!authorization || !authorization.startsWith('Bearer ')) next(new UnauthorizedError());
   else {
     const token = extractBearerToken(authorization);
     let payload;
@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
     try {
       payload = jwt.verify(token, JWT_SECRET);
     } catch (e) {
-      next(new UnauthorizedError('Пользователь не зарегистрирован'));
+      next(new UnauthorizedError());
     }
 
     req.user = payload;

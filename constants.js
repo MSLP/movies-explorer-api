@@ -1,5 +1,7 @@
 const badRequestErorDefault = 'Incorrect data passed.';
 const forbiddenErrorDefault = 'You do not have permission to perform this action';
+const serverErrorDefault = 'Server error';
+const unauthorizedErrorDefault = 'Authorization error';
 
 const respNoUserWithId = 'There is no user with such id.';
 const respEmailExists = 'The email is already in use.';
@@ -19,6 +21,8 @@ const maxLength = 'The field must be shorter than 30 symbols.';
 module.exports = {
   badRequestErorDefault,
   forbiddenErrorDefault,
+  serverErrorDefault,
+  unauthorizedErrorDefault,
   respNoUserWithId,
   respEmailExists,
   respWrongEmailOrPassword,
