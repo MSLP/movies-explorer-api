@@ -1,3 +1,10 @@
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
 const badRequestErorDefault = 'Incorrect data passed.';
 const forbiddenErrorDefault = 'You do not have permission to perform this action';
 const serverErrorDefault = 'Server error';
@@ -19,6 +26,7 @@ const minLength = 'The field must be longer than 2 symbols.';
 const maxLength = 'The field must be shorter than 30 symbols.';
 
 module.exports = {
+  limiter,
   badRequestErorDefault,
   forbiddenErrorDefault,
   serverErrorDefault,
