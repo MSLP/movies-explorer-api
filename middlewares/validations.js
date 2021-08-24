@@ -2,7 +2,7 @@ const { celebrate, Joi } = require('celebrate');
 const { isURL } = require('validator');
 const {
   emailValidation, requireMessage, minLength, maxLength, urlValidation,
-} = require('../models/constants');
+} = require('../constants');
 
 const validateUserBodyUpdate = celebrate({
   body: Joi.object().keys({

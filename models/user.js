@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const {
   uniqueEmail, emailValidation, requireMessage, minLength, maxLength,
-} = require('constants');
+} = require('../constants');
 
 const userSchema = new mongoose.Schema({
   email: {
