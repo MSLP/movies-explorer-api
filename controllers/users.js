@@ -7,7 +7,7 @@ const UnauthorizedError = require('../errors/unauthorized-err');
 const ConflictError = require('../errors/conflict-err');
 const { JWT_SECRET } = require('../config');
 
-const getUser = (req, res, next) => User.findOne({ _id: req._id })
+const getUser = (req, res, next) => User.findOne({ _id: req.user._id })
   .then((user) => {
     if (user) res.status(200).send(user);
     else next(new NotFoundError('Нет пользователя с таким id'));
@@ -19,7 +19,7 @@ const getUser = (req, res, next) => User.findOne({ _id: req._id })
 
 const updateUser = (req, res, next) => {
   const data = { ...req.body };
-  User.findByIdAndUpdate(req._id, data, { new: true, runValidators: true })
+  User.findByIdAndUpdate(req.user._id, data, { new: true, runValidators: true })
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'CastError') next(new BadRequestError('Переданы некорректные данные'));

@@ -19,5 +19,4 @@ mongoose.connect(MONGO_DB, {
 app.use(router);
 app.use(errors());
 app.use(error);
-
 app.listen(PORT);
