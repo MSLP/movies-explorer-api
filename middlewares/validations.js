@@ -1,8 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
-const { isValidObjectId } = require('mongoose');
 const { isURL } = require('validator');
 const {
-  emailValidation, requireMessage, minLength, maxLength, urlValidation, idValidation,
+  emailValidation, requireMessage, minLength, maxLength, urlValidation,
 } = require('../models/constants');
 
 const validateUserBodyUpdate = celebrate({
@@ -72,12 +71,7 @@ const validateMovieBody = celebrate({
       return helpers.message(urlValidation);
     })
       .messages({ 'any.required': requireMessage }),
-    owner: Joi.string().required().custom((value, helpers) => {
-      if (isValidObjectId(value)) return value;
-      return helpers.message(idValidation);
-    })
-      .messages({ 'any.required': requireMessage }),
-    movieId: Joi.string().required()
+    movieId: Joi.number().required()
       .messages({ 'any.required': requireMessage }),
     nameRU: Joi.string().required()
       .messages({ 'any.required': requireMessage }),

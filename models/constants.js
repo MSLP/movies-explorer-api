@@ -4,8 +4,7 @@ const urlValidation = 'Поле не соответствует требуемо
 const requireMessage = 'Обязательное поле незаполненно.';
 const minLength = 'Поле должно быть не короче 2 символов.';
 const maxLength = 'Поле должно быть не длиннее 30 символов';
-const idValidation = 'Невалидный ID';
 
 module.exports = {
-  uniqueEmail, emailValidation, urlValidation, requireMessage, minLength, maxLength, idValidation,
+  uniqueEmail, emailValidation, urlValidation, requireMessage, minLength, maxLength,
 };
