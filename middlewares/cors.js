@@ -1,7 +1,7 @@
 const ALLOWED_CORS = [
   'http://explorer.mslp.nomoredomains.monster',
   'https://explorer.mslp.nomoredomains.monster',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
