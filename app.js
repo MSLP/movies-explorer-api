@@ -5,6 +5,7 @@ const { errors } = require('celebrate');
 const { MONGO_DB, PORT } = require('./config');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
+const cors = require('./middlewares/cors');
 const { limiter } = require('./constants');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -20,6 +21,7 @@ mongoose.connect(MONGO_DB, {
   useFindAndModify: false,
 });
 
+app.use(cors);
 app.use(requestLogger);
 app.use(limiter);
 app.use(router);
