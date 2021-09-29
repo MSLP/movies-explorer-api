@@ -5,7 +5,7 @@ const ForbiddenError = require('../errors/forbidden-err');
 
 const { respNoMoviesAtAll, respNoMoviesWithId, respMovieDeleted } = require('../constants');
 
-const getMovies = (req, res, next) => Movie.find({})
+const getMovies = (req, res, next) => Movie.find({ owner: req.user._id })
   .then((movies) => {
     if (!movies.length) next(new NotFoundError(respNoMoviesAtAll));
     else res.status(200).send(movies);
